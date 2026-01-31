@@ -1,3 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zeus.mapper.FoodMapper"></mapper>
+<mapper namespace="com.zeus.mapper.FoodMapper">
+
+	<insert id="create" parameterType="com.zeus.domain.Food">
+		<selectKey keyProperty="fno" resultType="int" order="BEFORE">
+			SELECT "mybatisMember_seq".NEXTVAL FROM DUAL
+		</selectKey>
+		
+		INSERT INTO food_info (fno, fname, kcal, category)
+		VALUES (#{fno}, #{fname}, #{kcal}, #{category})
+	</insert>
+
+	<insert id="createAuth" parameterType="com.zeus.domain.FoodAuth">
+		INSERT INTO food_auth (fno, auth) 
+		VALUES (#{fno}, #{auth})
+	</insert>
+
+</mapper>
