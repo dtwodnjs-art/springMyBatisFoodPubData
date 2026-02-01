@@ -24,16 +24,29 @@
 	</insert>
 
 	<select id="list" resultType="com.zeus.domain.Food">
-		SELECT fno, fname, kcal, category, regdate
+		SELECT fno, fname, kcal, category,
+		regdate
 		FROM food_info
 		ORDER BY fno DESC
 	</select>
 
 	<select id="read" resultType="com.zeus.domain.Food">
-		SELECT fno, fname, kcal, category, regdate, moddate
+		SELECT fno, fname, kcal, category,
+		regdate, moddate
 		FROM food_info
 		WHERE fno = #{fno}
 	</select>
+
+
+	<delete id="delete">
+		DELETE FROM food_info
+		WHERE fno = #{fno}
+	</delete>
+
+	<delete id="deleteAuth">
+		DELETE FROM food_auth
+		WHERE fno = #{fno}
+	</delete>
 
 
 </mapper>

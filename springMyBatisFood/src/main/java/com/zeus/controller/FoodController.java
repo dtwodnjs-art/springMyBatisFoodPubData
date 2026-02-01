@@ -72,6 +72,20 @@ public class FoodController {
 		return "food/detail"; //detail jsp로
 	}
 	
+	@GetMapping("/delete")
+	public String foodRemove(int fno,Model model) {
+		try {
+			foodService.delete(fno);
+			model.addAttribute("message", "음식 정보가 삭제되었습니다.");
+			return "food/success";
+		} catch (Exception e) {
+			e.printStackTrace();
+	        model.addAttribute("message", "삭제 중 오류가 발생했습니다.");
+	        return "food/failed";
+		}
+	}
+	
+	
 	
 	
 

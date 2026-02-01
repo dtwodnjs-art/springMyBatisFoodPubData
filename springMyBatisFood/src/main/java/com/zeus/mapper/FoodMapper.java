@@ -28,6 +28,7 @@ public interface FoodMapper {
     // 6. 음식 정보 삭제
     public void delete(int fno) throws Exception;
     
+    
     // 7. 특정 음식의 기존 권한 삭제 (수정 시 필요)
     public void deleteAuth(int fno) throws Exception;
 

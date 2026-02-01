@@ -19,6 +19,6 @@ public interface FoodService {
     public void modify(Food food) throws Exception;
     
     //음식 삭제
-    public void remove(int fno) throws Exception;
+    public void delete(int fno) throws Exception;
 
 }

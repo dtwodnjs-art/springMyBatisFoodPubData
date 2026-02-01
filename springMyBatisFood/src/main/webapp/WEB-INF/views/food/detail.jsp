@@ -111,7 +111,7 @@
             
             <a href="/food/modifyForm?fno=${food.fno}" class="btn btn-modify">정보 수정</a>
             
-            <a href="/food/remove?fno=${food.fno}" class="btn btn-remove" 
+            <a href="/food/delete?fno=${food.fno}" class="btn btn-remove" 
                onclick="return confirm('정말 삭제하시겠습니까?');">정보 삭제</a>
         </div>
     </div>

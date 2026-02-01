@@ -48,8 +48,9 @@ public class FoodServiceImpl implements FoodService {
 	}
 
 	@Override
-	public void remove(int fno) throws Exception {
-		// TODO Auto-generated method stub
+	public void delete(int fno) throws Exception {
+		mapper.deleteAuth(fno);
+		mapper.delete(fno);
 
 	}
 
