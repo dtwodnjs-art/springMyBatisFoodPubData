@@ -1,14 +1,23 @@
 package com.zeus.controller;
 
+import java.util.List;
+
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.zeus.domain.Food;
 import com.zeus.service.FoodService;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
+
 
 @Slf4j
 @Controller
@@ -17,12 +26,46 @@ import lombok.extern.slf4j.Slf4j;
 
 public class FoodController {
 	@Autowired
-	private FoodService foodservice;
+	private FoodService foodService;
 	
 	//1.등록 화면
 	@GetMapping("/insertForm")
 	public String foodInsertForm() {
 		return "food/insertForm";
 	}
+	
+	//2.음식 등록 처리
+	
+	@PostMapping("/insert")
+	public String foodInsert(Food food, Model model) {
+		try {
+			foodService.register(food);
+            model.addAttribute("message", "음식 [%s] 등록 성공!".formatted(food.getFname()));
+            return "food/success";
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("message", "음식 등록 실패");
+		
+		return "food/failed";
+	}
+	
+	@GetMapping("/foodList")
+	public String foodList(Model model) {
+		try {
+			List<Food> list = foodService.list();
+			model.addAttribute("foodList",list); //jsp로
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return "food/foodList";
+		
+		
+		
+	}
+	
+	
 
 }
