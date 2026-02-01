@@ -48,5 +48,16 @@
 		WHERE fno = #{fno}
 	</delete>
 
+	<update id="update" parameterType="com.zeus.domain.Food">
+		UPDATE food_info
+		SET fname = #{fname},
+		kcal = #{kcal},
+		category = #{category},
+		moddate = SYSDATE
+		WHERE fno = #{fno}
+	</update>
+
+
+
 
 </mapper>

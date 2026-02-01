@@ -43,7 +43,7 @@ public class FoodServiceImpl implements FoodService {
 
 	@Override
 	public void modify(Food food) throws Exception {
-		// TODO Auto-generated method stub
+		mapper.update(food);
 
 	}
 

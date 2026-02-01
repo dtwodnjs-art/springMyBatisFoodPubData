@@ -85,6 +85,30 @@ public class FoodController {
 		}
 	}
 	
+	@GetMapping("/modifyForm")
+	public String foodModifyForm(int fno, Model model) throws Exception {
+	    
+	    Food food = foodService.read(fno);
+	    model.addAttribute("food", food);
+	    
+	    return "food/modifyForm";
+	}
+	
+	@PostMapping("/modify")
+	public String foodModify(Food food, Model model) {
+	    try {
+	        foodService.modify(food);
+	        
+	        
+	        model.addAttribute("message", "음식 정보가 성공적으로 수정되었습니다.");
+	        return "food/success";
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        model.addAttribute("message", "수정 처리 중 오류가 발생했습니다.");
+	        return "food/failed";
+	    }
+	}
+	
 	
 	
 	
