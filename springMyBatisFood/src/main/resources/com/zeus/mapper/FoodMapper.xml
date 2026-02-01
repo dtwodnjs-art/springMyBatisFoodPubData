@@ -4,22 +4,36 @@
 
 	<insert id="create" parameterType="com.zeus.domain.Food">
 		<selectKey keyProperty="fno" resultType="int" order="BEFORE">
-			SELECT food_info_seq.NEXTVAL FROM DUAL
+			SELECT
+			food_info_seq.NEXTVAL FROM DUAL
 		</selectKey>
-		
+
 		INSERT INTO food_info (fno, fname, kcal, category)
-		VALUES (#{fno}, #{fname}, #{kcal}, #{category})
+		VALUES (#{fno},
+		#{fname}, #{kcal}, #{category})
 	</insert>
 
+
+
+
+
 	<insert id="createAuth" parameterType="com.zeus.domain.FoodAuth">
-		INSERT INTO food_auth (fno, auth) 
+		INSERT INTO food_auth
+		(fno, auth)
 		VALUES (#{fno}, #{auth})
 	</insert>
 
-    <select id="list" resultType="com.zeus.domain.Food">
-        SELECT fno, fname, kcal, category, regdate 
-        FROM food_info 
-        ORDER BY fno DESC
-    </select>
+	<select id="list" resultType="com.zeus.domain.Food">
+		SELECT fno, fname, kcal, category, regdate
+		FROM food_info
+		ORDER BY fno DESC
+	</select>
+
+	<select id="read" resultType="com.zeus.domain.Food">
+		SELECT fno, fname, kcal, category, regdate, moddate
+		FROM food_info
+		WHERE fno = #{fno}
+	</select>
+
 
 </mapper>

@@ -38,8 +38,7 @@ public class FoodServiceImpl implements FoodService {
 
 	@Override
 	public Food read(int fno) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.read(fno);
 	}
 
 	@Override

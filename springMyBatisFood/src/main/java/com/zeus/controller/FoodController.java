@@ -58,13 +58,20 @@ public class FoodController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
+			
 		return "food/foodList";
-		
-		
-		
+				
 	}
+	
+	@GetMapping("/detail")
+	public String foodDetail(int fno,Model model) throws Exception{
+	    Food food = foodService.read(fno);
+		
+		model.addAttribute("food",food);
+		
+		return "food/detail"; //detail jsp로
+	}
+	
 	
 	
 
