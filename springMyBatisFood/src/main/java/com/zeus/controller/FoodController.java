@@ -109,6 +109,18 @@ public class FoodController {
 	    }
 	}
 	
+	@GetMapping("/search")
+	public String foodSearch(String searchType, String keyword, Model model) {
+	    try {
+	        List<Food> list = foodService.search(searchType, keyword);
+	        model.addAttribute("foodList", list); // 검색 결과를 다시 리스트에 담음
+	        model.addAttribute("keyword", keyword); // 검색어를 유지하고 싶을 때 사용
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return "food/foodList"; 
+	}
+	
 	
 	
 	

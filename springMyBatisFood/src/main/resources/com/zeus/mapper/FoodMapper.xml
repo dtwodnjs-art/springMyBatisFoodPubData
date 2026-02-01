@@ -50,12 +50,28 @@
 
 	<update id="update" parameterType="com.zeus.domain.Food">
 		UPDATE food_info
-		SET fname = #{fname},
+		SET fname =
+		#{fname},
 		kcal = #{kcal},
 		category = #{category},
 		moddate = SYSDATE
-		WHERE fno = #{fno}
+		WHERE
+		fno = #{fno}
 	</update>
+
+
+	<select id="search" resultType="com.zeus.domain.Food">
+		SELECT fno, fname, kcal, category, regdate
+		FROM food_info
+		WHERE 1=1
+		<if test="searchType == 'fname'">
+			AND fname LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test="searchType == 'category'">
+			AND category LIKE '%' || #{keyword} || '%'
+		</if>
+		ORDER BY fno DESC
+	</select>
 
 
 

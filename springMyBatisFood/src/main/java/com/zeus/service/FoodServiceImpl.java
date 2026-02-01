@@ -54,4 +54,9 @@ public class FoodServiceImpl implements FoodService {
 
 	}
 
+	@Override
+	public List<Food> search(String searchType, String keyword) throws Exception {
+		return mapper.search(searchType, keyword);
+	}
+
 }

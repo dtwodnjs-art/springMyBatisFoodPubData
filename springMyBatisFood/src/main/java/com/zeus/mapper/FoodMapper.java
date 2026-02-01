@@ -3,6 +3,7 @@ package com.zeus.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.zeus.domain.Food;
 import com.zeus.domain.FoodAuth;
@@ -31,5 +32,8 @@ public interface FoodMapper {
     
     // 7. 특정 음식의 기존 권한 삭제 (수정 시 필요)
     public void deleteAuth(int fno) throws Exception;
+    
+    //8.음식 검색
+    public List<Food> search(@Param("searchType") String searchType, @Param("keyword") String keyword) throws Exception;
 
 }

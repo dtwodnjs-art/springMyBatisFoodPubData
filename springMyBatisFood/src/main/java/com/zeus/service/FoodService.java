@@ -2,6 +2,8 @@ package com.zeus.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.zeus.domain.Food;
 
 public interface FoodService {
@@ -20,5 +22,9 @@ public interface FoodService {
     
     //음식 삭제
     public void delete(int fno) throws Exception;
+    
+    //음식 검색
+    public List<Food> search(String searchType, String keyword) throws Exception;
+    
 
 }
