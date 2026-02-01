@@ -75,3 +75,22 @@ CREATE TABLE food_auth (
     auth VARCHAR2(50) NOT NULL,
     CONSTRAINT fk_food_auth FOREIGN KEY(fno) REFERENCES food_info(fno)
 );
+
+INSERT INTO food_info (fno, name, price, category, description)
+VALUES (seq_food.NEXTVAL, '김치찌개', 9000, '한식', '얼큰하고 시원한 돼지고기 김치찌개');
+
+-- 전체 목록 최신순
+SELECT * FROM food_info ORDER BY fno DESC;
+
+-- 카테고리별 검색
+SELECT * FROM food_info WHERE category = '한식';
+
+-- 이름에 '치킨'이 들어간 음식 검색
+SELECT * FROM food_info WHERE name LIKE '%치킨%' ORDER BY fno DESC;
+
+UPDATE food_info 
+SET price = 10000, 
+    description = '가격이 인상된 김치찌개' 
+WHERE fno = 1;
+
+DELETE FROM food_info WHERE fno = 1;
